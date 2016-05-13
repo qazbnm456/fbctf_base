@@ -37,9 +37,6 @@ function install_mysql() {
 }
 
 function install_nginx() {
-  local __path=$1
-  local __mode=$2
-
   package nginx
 }
 
@@ -51,30 +48,5 @@ function repo_hhvm() {
 }
 
 function install_hhvm() {
-  local __path=$1
-
   package hhvm
-
-  log "Copying HHVM configuration"
-  cat "$__path/extra/hhvm.conf" | sed "s|CTFPATH|$__path/|g" | sudo tee /etc/hhvm/server.ini
-
-  log "HHVM as PHP systemwide"
-  sudo /usr/bin/update-alternatives --install /usr/bin/php php /usr/bin/hhvm 60
-
-  log "Enabling HHVM to start by default"
-  sudo update-rc.d hhvm defaults
-
-  log "Restart HHVM"
-  sudo service hhvm restart
-}
-
-function install_composer() {
-  local __path=$1
-
-  log "Installing composer"
-  cd $__path
-  curl -sS https://getcomposer.org/installer | php
-  php composer.phar install
-  sudo mv composer.phar /usr/bin
-  sudo chmod +x /usr/bin/composer.phar
 }

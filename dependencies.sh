@@ -4,7 +4,6 @@ P_ROOT="root"
 MODE="prod"
 CTF_PATH="/var/www/fbctf"
 
-
 mkdir -p "$CTF_PATH"
 
 # There we go!
@@ -41,16 +40,9 @@ package git
 # Install HHVM
 install_hhvm "$CTF_PATH"
 
-# Install Composer
-install_composer "$CTF_PATH"
-composer.phar install
-
 # Install NPM and grunt
 package npm
 package nodejs-legacy
-npm install
-sudo npm install -g grunt
-sudo npm install -g flow-bin
 
 # Install nginx
 install_nginx "$CTF_PATH" "$MODE"
