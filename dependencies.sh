@@ -16,6 +16,7 @@ package emacs
 # Adding repos for osquery (of course!), mycli and hhvm
 repo_osquery
 repo_mycli
+repo_hhvm
 
 # We only run this once so provisioning is faster
 sudo apt-get update
@@ -35,6 +36,9 @@ install_mysql "$P_ROOT"
 
 # Install git
 package git
+
+# Install HHVM
+install_hhvm "$CTF_PATH"
 
 # Install NPM and grunt
 package npm
